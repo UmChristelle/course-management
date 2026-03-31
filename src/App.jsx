@@ -7,6 +7,7 @@ import LoginPage from './pages/LoginPage';
 import DashboardPage from './pages/DashboardPage';
 import CoursesPage from './pages/CoursesPage';
 import CourseDetailPage from './pages/CourseDetailPage';
+import AddCoursePage from './pages/AddCoursePage';
 import NotFoundPage from './pages/NotFoundPage';
 
 export default function App() {
