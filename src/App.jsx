@@ -7,7 +7,7 @@ import LoginPage from './pages/LoginPage';
 import DashboardPage from './pages/DashboardPage';
 import CoursesPage from './pages/CoursesPage';
 import CourseDetailPage from './pages/CourseDetailPage';
-import AddCoursePage from './pages/AddCoursePage';
+import NotFoundPage from './pages/NotFoundPage';
 
 export default function App() {
   return (
@@ -20,10 +20,10 @@ export default function App() {
             <Route index element={<Navigate to="/dashboard" replace/>}/>
             <Route path="dashboard" element={<DashboardPage/>}/>
             <Route path="courses" element={<CoursesPage/>}/>
-            <Route path="courses/new" element={<AddCoursePage/>}/>
+            <Route path="add-course" element={<AddCoursePage/>}/>
             <Route path="courses/:id" element={<CourseDetailPage/>}/>
           </Route>
-          <Route path="*" element={<Navigate to="/dashboard" replace/>}/>
+          <Route path="*" element={<NotFoundPage/>}/>
         </Routes>
       </BrowserRouter>
     </AuthProvider>
