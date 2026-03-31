@@ -13,8 +13,8 @@ const Sidebar = () => {
   ];
 
   return (
-    <div className="bg-gray-800 text-white w-64 min-h-screen p-4">
-      <h2 className="text-2xl font-bold mb-8">Course Management</h2>
+    <div className="bg-white text-gray-800 w-64 min-h-screen p-4 border-r border-gray-200">
+      <h2 className="text-2xl font-bold mb-8 text-gray-900">Course Management</h2>
       <nav>
         <ul className="space-y-2">
           {menuItems.map((item) => {
@@ -25,7 +25,7 @@ const Sidebar = () => {
                 <Link
                   to={item.path}
                   className={`flex items-center space-x-3 p-3 rounded-lg transition-colors ${
-                    isActive ? 'bg-blue-600' : 'hover:bg-gray-700'
+                    isActive ? 'bg-blue-100 text-blue-600' : 'hover:bg-gray-100 text-gray-700'
                   }`}
                 >
                   <Icon size={20} />
@@ -39,7 +39,7 @@ const Sidebar = () => {
       <div className="mt-auto pt-8">
         <button
           onClick={logout}
-          className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-700 transition-colors w-full"
+          className="flex items-center space-x-3 p-3 rounded-lg hover:bg-red-50 text-red-600 transition-colors w-full"
         >
           <LogOut size={20} />
           <span>Logout</span>
