@@ -38,11 +38,9 @@ A professional frontend dashboard for university supervisors to manage course ca
 - **Email:** admin@example.com
 - **Password:** adminpassword123
 
-## Features
-- JWT authentication with auto-logout
-- Dashboard with statistics
-- Full CRUD: Create, Read, Update, Delete courses
-- Search and filter courses
-- Responsive mobile layout
-- Confirmation dialogs for destructive actions
-- Toast notifications for all operations
+## Deployment
+The application is deployed on Vercel/Netlify for production use.
+
+To deploy:
+1. Build the project: `npm run build`
+2. Deploy the `dist` folder to your hosting platform
