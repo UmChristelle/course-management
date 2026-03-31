@@ -1,16 +1,48 @@
-# React + Vite
+# University Course Management Interface
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A professional frontend dashboard for university supervisors to manage course catalogs.
 
-Currently, two official plugins are available:
+## Tech Stack
+- React 18 + Vite
+- React Router v6
+- Axios
+- react-hot-toast
+- Lucide React icons
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Setup & Run Locally
 
-## React Compiler
+1. **Clone the repository**
+```bash
+   git clonehttps://github.com/UmChristelle/course-management
+   cd course-management
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+2. **Install dependencies**
+```bash
+   npm install
+```
 
-## Expanding the ESLint configuration
+3. **Configure environment**
+   Create `.env` in project root:
+```env
+   VITE_API_BASE_URL=https://student-management-system-backend.up.railway.app
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+4. **Start the dev server**
+```bash
+   npm run dev
+```
+   Open [http://localhost:5173](http://localhost:5173)
+
+## Login Credentials
+- **Email:** admin@example.com
+- **Password:** adminpassword123
+
+## Features
+- JWT authentication with auto-logout
+- Dashboard with statistics
+- Full CRUD: Create, Read, Update, Delete courses
+- Search and filter courses
+- Responsive mobile layout
+- Confirmation dialogs for destructive actions
+- Toast notifications for all operations
