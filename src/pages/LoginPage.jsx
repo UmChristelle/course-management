@@ -8,14 +8,11 @@ export default function LoginPage() {
   const navigate = useNavigate();
   const [form, setForm] = useState({ email: '', password: '' });
   const [showPw, setShowPw] = useState(false);
-  const [error, setError] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
-    const result = await login(form.email, form.password);
-    if (result.success) navigate('/dashboard');
-    else setError(result.error);
+    const success = await login(form.email, form.password);
+    if (success) navigate('/dashboard');
   };
 
   return (
@@ -41,7 +38,6 @@ export default function LoginPage() {
             <h2>Welcome back</h2>
             <p>Sign in to your supervisor account</p>
           </div>
-          {error && <div className="alert alert-error">{error}</div>}
           <form onSubmit={handleSubmit} className="login-form">
             <div className="form-group">
               <label className="form-label"><Mail size={14}/> Email Address</label>

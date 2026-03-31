@@ -8,7 +8,7 @@ import CourseForm from '../components/CourseForm';
 import { PlusCircle, Search, Eye, Pencil, Trash2, BookOpen } from 'lucide-react';
 
 export default function CoursesPage() {
-  const { courses, loading, fetchCourses, deleteCourse, updateCourse } = useCourses();
+  const { courses, loading, fetchCourses, removeCourse, editCourse } = useCourses();
   const [search, setSearch] = useState('');
   const [deleteTarget, setDeleteTarget] = useState(null);
   const [deleteLoading, setDeleteLoading] = useState(false);
@@ -19,21 +19,21 @@ export default function CoursesPage() {
   useEffect(() => { fetchCourses(); }, [fetchCourses]);
 
   const filtered = courses.filter(c =>
-    (c.name || '').toLowerCase().includes(search.toLowerCase()) ||
-    (c.code || '').toLowerCase().includes(search.toLowerCase()) ||
-    (c.instructor || '').toLowerCase().includes(search.toLowerCase())
+    (c.title || '').toLowerCase().includes(search.toLowerCase()) ||
+    (c.instructor || '').toLowerCase().includes(search.toLowerCase()) ||
+    (c.description || '').toLowerCase().includes(search.toLowerCase())
   );
 
   const handleDelete = async () => {
     setDeleteLoading(true);
-    await deleteCourse(deleteTarget.id);
+    await removeCourse(deleteTarget.id);
     setDeleteLoading(false);
     setDeleteTarget(null);
   };
 
   const handleEdit = async (data) => {
     setEditLoading(true);
-    await updateCourse(editTarget.id, data);
+    await editCourse(editTarget.id, data);
     setEditLoading(false);
     setEditTarget(null);
   };
@@ -45,7 +45,7 @@ export default function CoursesPage() {
           <h1 className="page-title">All Courses</h1>
           <p className="page-subtitle">{courses.length} course{courses.length !== 1 ? 's' : ''} in the catalog</p>
         </div>
-        <Link to="/courses/new" className="btn btn-primary">
+        <Link to="/add-course" className="btn btn-primary">
           <PlusCircle size={16}/> Add Course
         </Link>
       </div>
@@ -63,18 +63,17 @@ export default function CoursesPage() {
         <div className="empty-state">
           <BookOpen size={48}/>
           <p>{search ? 'No courses match your search.' : 'No courses yet.'}</p>
-          {!search && <Link to="/courses/new" className="btn btn-primary">Add First Course</Link>}
+          {!search && <Link to="/add-course" className="btn btn-primary">Add First Course</Link>}
         </div>
       ) : (
         <div className="table-container">
           <table className="data-table">
             <thead>
               <tr>
-                <th>Course</th>
-                <th>Code</th>
+                <th>Title</th>
                 <th>Instructor</th>
                 <th>Credits</th>
-                <th>Status</th>
+                <th>Schedule</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -82,13 +81,12 @@ export default function CoursesPage() {
               {filtered.map(course => (
                 <tr key={course.id}>
                   <td>
-                    <div className="table-course-name">{course.name}</div>
-                    {course.category && <div className="table-course-meta">{course.category}</div>}
+                    <div className="table-course-name">{course.title}</div>
+                    <div className="table-course-meta">{course.description}</div>
                   </td>
-                  <td><span className="code-tag">{course.code}</span></td>
                   <td>{course.instructor || '—'}</td>
                   <td>{course.credits || '—'}</td>
-                  <td><span className={`status-badge status-${course.status || 'active'}`}>{course.status || 'active'}</span></td>
+                  <td>{course.schedule || '—'}</td>
                   <td>
                     <div className="action-btns">
                       <Link to={`/courses/${course.id}`} className="icon-btn" title="View"><Eye size={15}/></Link>

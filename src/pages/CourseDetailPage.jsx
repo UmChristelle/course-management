@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { coursesAPI } from '../services/api';
 import { useCourses } from '../hooks/useCourses';
 import Spinner from '../components/Spinner';
 import Modal from '../components/Modal';
@@ -12,7 +11,7 @@ import toast from 'react-hot-toast';
 export default function CourseDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { updateCourse, deleteCourse } = useCourses();
+  const { editCourse, removeCourse, getCourse } = useCourses();
   const [course, setCourse] = useState(null);
   const [loading, setLoading] = useState(true);
   const [editOpen, setEditOpen] = useState(false);
@@ -24,8 +23,8 @@ export default function CourseDetailPage() {
     const fetch = async () => {
       setLoading(true);
       try {
-        const res = await coursesAPI.getById(id);
-        setCourse(res.data?.course || res.data);
+        const data = await getCourse(id);
+        setCourse(data);
       } catch {
         toast.error('Course not found.');
         navigate('/courses');
@@ -34,18 +33,19 @@ export default function CourseDetailPage() {
       }
     };
     fetch();
-  }, [id]);
+  }, [id, getCourse]);
 
   const handleEdit = async (data) => {
     setEditLoading(true);
-    const result = await updateCourse(id, data);
-    if (result.success) { setCourse(prev => ({...prev, ...data})); setEditOpen(false); }
+    await editCourse(id, data);
+    setCourse(prev => ({...prev, ...data}));
+    setEditOpen(false);
     setEditLoading(false);
   };
 
   const handleDelete = async () => {
     setDeleteLoading(true);
-    await deleteCourse(id);
+    await removeCourse(id);
     navigate('/courses');
   };
 
@@ -53,12 +53,9 @@ export default function CourseDetailPage() {
   if (!course) return null;
 
   const details = [
-    { icon: Hash, label: 'Course Code', value: course.code },
     { icon: User, label: 'Instructor', value: course.instructor },
     { icon: Clock, label: 'Credits', value: course.credits },
-    { icon: Clock, label: 'Duration', value: course.duration ? `${course.duration} weeks` : null },
-    { icon: Tag, label: 'Category', value: course.category },
-    { icon: Tag, label: 'Status', value: course.status },
+    { icon: Clock, label: 'Schedule', value: course.schedule },
   ].filter(d => d.value);
 
   return (
@@ -66,7 +63,7 @@ export default function CourseDetailPage() {
       <div className="page-header">
         <div className="page-header-left">
           <Link to="/courses" className="back-link"><ArrowLeft size={16}/> Back to Courses</Link>
-          <h1 className="page-title">{course.name}</h1>
+          <h1 className="page-title">{course.title}</h1>
         </div>
         <div className="page-actions">
           <button className="btn btn-ghost" onClick={() => setEditOpen(true)}><Pencil size={15}/> Edit</button>

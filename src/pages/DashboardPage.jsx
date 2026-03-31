@@ -21,7 +21,7 @@ export default function DashboardPage() {
           <h1 className="page-title">Dashboard</h1>
           <p className="page-subtitle">Welcome back, {user?.name || user?.email?.split('@')[0] || 'Supervisor'}</p>
         </div>
-        <Link to="/courses/new" className="btn btn-primary">
+        <Link to="/add-course" className="btn btn-primary">
           <PlusCircle size={16}/> New Course
         </Link>
       </div>
@@ -53,7 +53,7 @@ export default function DashboardPage() {
             {courses.length === 0 ? (
               <div className="empty-state">
                 <BookOpen size={40}/>
-                <p>No courses yet. <Link to="/courses/new">Create your first course →</Link></p>
+                <p>No courses yet. <Link to="/add-course">Create your first course →</Link></p>
               </div>
             ) : (
               <div className="course-grid">
@@ -64,10 +64,10 @@ export default function DashboardPage() {
                       <span className={`status-badge status-${course.status || 'active'}`}>
                         {course.status || 'active'}
                       </span>
-                      <h3>{course.name}</h3>
-                      <p className="course-code">{course.code}</p>
+                      <h3>{course.title}</h3>
+                      <p className="course-code">{course.credits} credits</p>
                       {course.instructor && <p className="course-meta">👤 {course.instructor}</p>}
-                      {course.credits && <p className="course-meta">🎓 {course.credits} credits</p>}
+                      {course.schedule && <p className="course-meta">📅 {course.schedule}</p>}
                     </div>
                   </Link>
                 ))}

@@ -5,15 +5,15 @@ import CourseForm from '../components/CourseForm';
 import { ArrowLeft } from 'lucide-react';
 
 export default function AddCoursePage() {
-  const { createCourse } = useCourses();
+  const { addCourse } = useCourses();
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (data) => {
     setLoading(true);
-    const result = await createCourse(data);
+    await addCourse(data);
     setLoading(false);
-    if (result.success) navigate('/courses');
+    navigate('/courses');
   };
 
   return (
