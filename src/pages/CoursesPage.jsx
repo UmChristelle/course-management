@@ -102,19 +102,17 @@ export default function CoursesPage() {
       )}
 
       <ConfirmDialog
-        open={!!deleteTarget}
+        isOpen={!!deleteTarget}
         onClose={() => setDeleteTarget(null)}
         onConfirm={handleDelete}
-        loading={deleteLoading}
-        title={`Delete "${deleteTarget?.name}"?`}
+        title={`Delete "${deleteTarget?.title}"?`}
         message="This will permanently remove the course from the catalog. This action cannot be undone."
       />
 
-      <Modal open={!!editTarget} onClose={() => setEditTarget(null)} title="Edit Course" size="lg">
+      <Modal isOpen={!!editTarget} onClose={() => setEditTarget(null)} title="Edit Course">
         {editTarget && (
           <CourseForm
-            initial={editTarget}
-            loading={editLoading}
+            course={editTarget}
             onSubmit={handleEdit}
             onCancel={() => setEditTarget(null)}
           />
