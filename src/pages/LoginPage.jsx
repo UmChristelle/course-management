@@ -1,77 +1,114 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
-import { GraduationCap, Mail, Lock, Eye, EyeOff } from 'lucide-react';
+import { ArrowRight, LockKeyhole, ShieldCheck } from 'lucide-react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { useAuth } from '../hooks/useAuth';
 
 export default function LoginPage() {
-  const { login, loading } = useAuth();
   const navigate = useNavigate();
-  const [form, setForm] = useState({ email: '', password: '' });
-  const [showPw, setShowPw] = useState(false);
+  const location = useLocation();
+  const { signIn, authLoading } = useAuth();
+  const [form, setForm] = useState({
+    email: 'admin@example.com',
+    password: 'adminpassword123',
+  });
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const success = await login(form.email, form.password);
-    if (success) navigate('/dashboard');
-  };
+  async function handleSubmit(event) {
+    event.preventDefault();
+
+    try {
+      const session = await signIn(form);
+
+      if (session.role !== 'SUPERVISOR') {
+        toast.error('This interface is restricted to supervisor accounts.');
+        return;
+      }
+
+      toast.success('Welcome back. Supervisor access granted.');
+      navigate(location.state?.from ?? '/dashboard', { replace: true });
+    } catch (error) {
+      toast.error(error.message);
+    }
+  }
+
+  function handleChange(event) {
+    const { name, value } = event.target;
+    setForm((current) => ({ ...current, [name]: value }));
+  }
 
   return (
-    <div className="login-page">
-      <div className="login-left">
-        <div className="login-brand">
-          <GraduationCap size={48} />
-          <h1>UniManage</h1>
-          <p>University Course Management Portal</p>
+    <main className="login-layout">
+      <section className="login-hero">
+        <div className="login-hero__badge">
+          <ShieldCheck size={16} />
+          <span>University Supervisor Workspace</span>
         </div>
-        <div className="login-stats">
-          {[['500+', 'Courses'], ['12K+', 'Students'], ['200+', 'Instructors']].map(([n, l]) => (
-            <div key={l} className="login-stat">
-              <span className="stat-num">{n}</span>
-              <span className="stat-lbl">{l}</span>
+        <h1>Manage your course catalog with a polished, audit-friendly dashboard.</h1>
+        <p>
+          Sign in with the supervisor account to create, review, update, and safely
+          remove course records from the live backend.
+        </p>
+
+        <div className="hero-grid">
+          <article>
+            <strong>Authenticated access</strong>
+            <p>Supervisor-only actions are protected before any catalog changes happen.</p>
+          </article>
+          <article>
+            <strong>Live CRUD workflow</strong>
+            <p>Every create, detail, update, and delete action is connected to the API.</p>
+          </article>
+        </div>
+      </section>
+
+      <section className="login-panel">
+        <form className="login-card" onSubmit={handleSubmit}>
+          <div className="section-heading">
+            <div>
+              <p className="section-heading__eyebrow">Secure access</p>
+              <h2>Supervisor login</h2>
             </div>
-          ))}
-        </div>
-      </div>
-      <div className="login-right">
-        <div className="login-card">
-          <div className="login-card-header">
-            <h2>Welcome back</h2>
-            <p>Sign in to your supervisor account</p>
           </div>
-          <form onSubmit={handleSubmit} className="login-form">
-            <div className="form-group">
-              <label className="form-label"><Mail size={14}/> Email Address</label>
-              <input
-                type="email" className="form-control"
-                placeholder="admin@example.com"
-                value={form.email}
-                onChange={e => setForm(f => ({...f, email: e.target.value}))}
-                required autoComplete="email"
-              />
-            </div>
-            <div className="form-group">
-              <label className="form-label"><Lock size={14}/> Password</label>
-              <div className="input-with-icon">
-                <input
-                  type={showPw ? 'text' : 'password'}
-                  className="form-control"
-                  placeholder="Your password"
-                  value={form.password}
-                  onChange={e => setForm(f => ({...f, password: e.target.value}))}
-                  required autoComplete="current-password"
-                />
-                <button type="button" className="pw-toggle" onClick={() => setShowPw(v => !v)}>
-                  {showPw ? <EyeOff size={17}/> : <Eye size={17}/>}
-                </button>
-              </div>
-            </div>
-            <button type="submit" className="btn btn-primary btn-full" disabled={loading}>
-              {loading ? 'Signing in…' : 'Sign In'}
-            </button>
-          </form>
-          <p className="login-hint">Use: admin@example.com / adminpassword123</p>
-        </div>
-      </div>
-    </div>
+
+          <label className="field">
+            <span>Email</span>
+            <input
+              type="email"
+              name="email"
+              value={form.email}
+              onChange={handleChange}
+              autoComplete="email"
+              required
+            />
+          </label>
+
+          <label className="field">
+            <span>Password</span>
+            <input
+              type="password"
+              name="password"
+              value={form.password}
+              onChange={handleChange}
+              autoComplete="current-password"
+              required
+            />
+          </label>
+
+          <button
+            type="submit"
+            className="primary-button primary-button--wide"
+            disabled={authLoading}
+          >
+            <LockKeyhole size={16} />
+            <span>{authLoading ? 'Signing in...' : 'Enter dashboard'}</span>
+            <ArrowRight size={16} />
+          </button>
+
+          <div className="login-card__hint">
+            Demo credentials are prefilled for this assignment.
+          </div>
+        </form>
+      </section>
+    </main>
   );
 }

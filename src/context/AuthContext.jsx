@@ -1,54 +1,50 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import { login as apiLogin } from '../services/api';
-import toast from 'react-hot-toast';
+import { createContext, useEffect, useMemo, useState } from 'react';
+import { loginRequest } from '../lib/api';
+import {
+  clearStoredSession,
+  getStoredSession,
+  storeSession,
+} from '../lib/storage';
 
-const AuthContext = createContext();
+const AuthContext = createContext(null);
 
-export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
-  }
-  return context;
-};
-
-export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+export function AuthProvider({ children }) {
+  const [session, setSession] = useState(() => getStoredSession());
+  const [authLoading, setAuthLoading] = useState(false);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      // Verify token or set user
-      setUser({ token });
+    if (session) {
+      storeSession(session);
+      return;
     }
-    setLoading(false);
-  }, []);
 
-  const login = async (email, password) => {
-    try {
-      const data = await apiLogin(email, password);
-      localStorage.setItem('token', data.token);
-      setUser({ token: data.token });
-      toast.success('Login successful');
-      return true;
-    } catch (error) {
-      toast.error(error.message || 'Login failed');
-      return false;
-    }
-  };
+    clearStoredSession();
+  }, [session]);
 
-  const logout = () => {
-    localStorage.removeItem('token');
-    setUser(null);
-    toast.success('Logged out');
-  };
+  const value = useMemo(
+    () => ({
+      session,
+      isAuthenticated: Boolean(session?.accessToken),
+      authLoading,
+      async signIn(credentials) {
+        setAuthLoading(true);
 
-  const isAuthenticated = !!user;
-
-  return (
-    <AuthContext.Provider value={{ user, login, logout, isAuthenticated, loading }}>
-      {children}
-    </AuthContext.Provider>
+        try {
+          const nextSession = await loginRequest(credentials);
+          setSession(nextSession);
+          return nextSession;
+        } finally {
+          setAuthLoading(false);
+        }
+      },
+      signOut() {
+        setSession(null);
+      },
+    }),
+    [authLoading, session],
   );
-};
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+}
+
+export default AuthContext;

@@ -1,25 +1,42 @@
-import Modal from './Modal';
+export default function ConfirmDialog({
+  course,
+  busy,
+  onCancel,
+  onConfirm,
+}) {
+  if (!course) {
+    return null;
+  }
 
-const ConfirmDialog = ({ isOpen, onClose, onConfirm, title, message }) => {
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title={title}>
-      <p className="mb-4">{message}</p>
-      <div className="flex justify-end space-x-2">
-        <button
-          onClick={onClose}
-          className="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400"
-        >
-          Cancel
-        </button>
-        <button
-          onClick={onConfirm}
-          className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
-        >
-          Confirm
-        </button>
-      </div>
-    </Modal>
+    <>
+      <button
+        type="button"
+        className="overlay overlay--dark"
+        onClick={onCancel}
+        aria-label="Close delete confirmation"
+      />
+      <section className="confirm-dialog" aria-label="Delete course confirmation">
+        <p className="section-heading__eyebrow">Danger zone</p>
+        <h2>Delete {course.courseName}?</h2>
+        <p>
+          This action removes the course from the catalog. Make sure the record is no
+          longer needed before continuing.
+        </p>
+        <div className="modal__actions">
+          <button type="button" className="ghost-button" onClick={onCancel}>
+            Keep course
+          </button>
+          <button
+            type="button"
+            className="danger-button"
+            onClick={() => onConfirm(course)}
+            disabled={busy}
+          >
+            {busy ? 'Deleting...' : 'Delete course'}
+          </button>
+        </div>
+      </section>
+    </>
   );
-};
-
-export default ConfirmDialog;
+}

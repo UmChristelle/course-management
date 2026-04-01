@@ -1,46 +1,55 @@
 # University Course Management Interface
 
-A professional frontend dashboard for university supervisors to manage course catalogs.
+A fresh supervisor-facing frontend built from scratch for the assignment brief. The app authenticates against the provided backend and supports the full course CRUD workflow from a professional dashboard.
 
-## Tech Stack
-- React 18 + Vite
-- React Router v6
+## Features
+
+- Supervisor login using the provided test account
+- Real API integration with `/api/auth/login` and `/api/courses`
+- Create, list, search, inspect, update, and delete courses
+- Success and error toast feedback with loading states
+- Responsive dashboard layout for desktop and mobile
+
+## Stack
+
+- React
+- Vite
+- React Router
 - Axios
+- Lucide React
 - react-hot-toast
-- Lucide React icons
 
-## Setup & Run Locally
+## Run Locally
 
-1. **Clone the repository**
+1. Install dependencies:
+
 ```bash
-   git clonehttps://github.com/UmChristelle/course-management
-   cd course-management
+npm install
 ```
 
-2. **Install dependencies**
-```bash
-   npm install
-```
+2. Create a `.env` file in the project root:
 
-3. **Configure environment**
-   Create `.env` in project root:
 ```env
-   VITE_API_BASE_URL=https://student-management-system-backend.up.railway.app
+VITE_API_BASE_URL=https://student-management-system-backend.up.railway.app
 ```
 
-4. **Start the dev server**
+3. Start the development server:
+
 ```bash
-   npm run dev
+npm run dev
 ```
-   Open [http://localhost:5173](http://localhost:5173)
 
-## Login Credentials
-- **Email:** admin@example.com
-- **Password:** adminpassword123
+4. Open `http://localhost:5173`
 
-## Deployment
-The application is deployed on Vercel/Netlify for production use.
+## Demo Credentials
 
-To deploy:
-1. Build the project: `npm run build`
-2. Deploy the `dist` folder to your hosting platform
+- Email: `admin@example.com`
+- Password: `adminpassword123`
+
+## Production Build
+
+```bash
+npm run build
+```
+
+The production files will be generated in `dist/` and can be deployed to Vercel, Netlify, or another static hosting provider.
