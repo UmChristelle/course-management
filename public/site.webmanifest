@@ -1,0 +1,19 @@
+{
+  "name": "University Course Management",
+  "short_name": "CourseMgmt",
+  "icons": [
+    {
+      "src": "/favicon-32x32.png?v=2",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon.png?v=2",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#12324a",
+  "background_color": "#f7f3ec",
+  "display": "standalone"
+}
