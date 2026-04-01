@@ -43,10 +43,9 @@ export default function LoginPage() {
           <ShieldCheck size={16} />
           <span>University Supervisor Workspace</span>
         </div>
-        <h1>Manage your course catalog with a polished, audit-friendly dashboard.</h1>
+        <h1>Manage courses with a clean, professional dashboard.</h1>
         <p>
-          Sign in with the supervisor account to create, review, update, and safely
-          remove course records from the live backend.
+          Sign in as a supervisor to manage course records.
         </p>
 
         <div className="hero-grid">
