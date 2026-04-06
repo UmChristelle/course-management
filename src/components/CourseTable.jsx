@@ -34,7 +34,7 @@ export default function CourseTable({
               key={course.id}
               className={course.id === activeCourseId ? 'is-active' : undefined}
             >
-              <td>
+              <td data-label="Course">
                 <div className="course-identity">
                   <span className="course-identity__badge">
                     {initialsForCourse(course.courseName)}
@@ -45,11 +45,11 @@ export default function CourseTable({
                   </div>
                 </div>
               </td>
-              <td>
+              <td data-label="Summary">
                 <p className="course-table__description">{course.description}</p>
               </td>
-              <td>{formatDate(course.updatedAt ?? course.createdAt)}</td>
-              <td>
+              <td data-label="Updated">{formatDate(course.updatedAt ?? course.createdAt)}</td>
+              <td data-label="Actions">
                 <div className="table-actions">
                   <button
                     type="button"

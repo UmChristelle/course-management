@@ -505,6 +505,10 @@ button {
   vertical-align: top;
 }
 
+.course-table td::before {
+  display: none;
+}
+
 .course-table th {
   font-size: 0.78rem;
   letter-spacing: 0.12em;
@@ -622,6 +626,11 @@ button {
 .drawer__identity {
   display: flex;
   gap: 1rem;
+  min-width: 0;
+}
+
+.drawer__identity h2 {
+  overflow-wrap: anywhere;
 }
 
 .drawer__stack {
@@ -678,8 +687,10 @@ button {
   left: 50%;
   top: 50%;
   width: min(580px, calc(100vw - 2rem));
+  max-height: calc(100vh - 2rem);
   padding: 1.5rem;
   transform: translate(-50%, -50%);
+  overflow: auto;
 }
 
 .course-form {
@@ -749,19 +760,120 @@ button {
     padding: 1.2rem;
   }
 
+  .login-hero h1,
+  .hero-panel h1 {
+    font-size: clamp(1.9rem, 10vw, 2.6rem);
+    max-width: none;
+  }
+
+  .section-heading,
+  .drawer__header,
+  .detail-card__row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .section-heading > *,
+  .drawer__identity > * {
+    min-width: 0;
+  }
+
   .table-actions,
   .modal__actions,
   .hero-panel__actions {
     flex-wrap: wrap;
   }
 
-  .course-table th:nth-child(2),
-  .course-table td:nth-child(2) {
+  .hero-panel__actions > *,
+  .modal__actions > * {
+    width: 100%;
+  }
+
+  .search-shell {
+    padding-inline: 0.85rem;
+  }
+
+  .search-shell input {
+    min-width: 0;
+  }
+
+  .table-shell {
+    overflow: visible;
+    border: 0;
+    background: transparent;
+  }
+
+  .course-table,
+  .course-table thead,
+  .course-table tbody,
+  .course-table tr,
+  .course-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .course-table thead {
     display: none;
+  }
+
+  .course-table tbody {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .course-table tbody tr {
+    padding: 1rem;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: var(--shadow-md);
+  }
+
+  .course-table td {
+    padding: 0;
+    border: 0;
+  }
+
+  .course-table td + td {
+    margin-top: 0.85rem;
+  }
+
+  .course-table td::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: 0.35rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-faint);
   }
 
   .drawer {
     left: 1rem;
     width: auto;
+    padding: 1.2rem;
+  }
+
+  .drawer__identity {
+    align-items: flex-start;
+  }
+
+  .course-identity {
+    gap: 0.75rem;
+  }
+
+  .table-actions {
+    justify-content: flex-start;
+  }
+
+  .icon-button {
+    flex: 1 1 0;
+  }
+
+  .modal,
+  .confirm-dialog {
+    width: calc(100vw - 1.5rem);
+    padding: 1.2rem;
   }
 }
