@@ -18,14 +18,14 @@
       <stop offset="1" stop-color="#BD34FE" />
     </linearGradient>
     <linearGradient id="paint1_linear" x1="194.651" y1="8.818" x2="236.076" y2="292.989" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#FFEA83" />
-      <stop offset="0.083" stop-color="#FFDD35" />
-      <stop offset="1" stop-color="#FFA800" />
+      <stop stop-color="#CBE7FF" />
+      <stop offset="0.083" stop-color="#7CC6FF" />
+      <stop offset="1" stop-color="#1E88E5" />
     </linearGradient>
     <linearGradient id="paint2_linear" x1="194.651" y1="8.818" x2="236.076" y2="292.989" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#FFEA83" />
-      <stop offset="0.083" stop-color="#FFDD35" />
-      <stop offset="1" stop-color="#FFA800" />
+      <stop stop-color="#CBE7FF" />
+      <stop offset="0.083" stop-color="#7CC6FF" />
+      <stop offset="1" stop-color="#1E88E5" />
     </linearGradient>
   </defs>
 </svg>
