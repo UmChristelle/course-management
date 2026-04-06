@@ -17,7 +17,7 @@ export default function CourseDetailDrawer({ course, onClose, onEdit }) {
               {initialsForCourse(course.courseName)}
             </span>
             <div>
-              <p className="section-heading__eyebrow">Course spotlight</p>
+              <p className="section-heading__eyebrow">Course details</p>
               <h2>{course.courseName}</h2>
             </div>
           </div>
@@ -29,7 +29,7 @@ export default function CourseDetailDrawer({ course, onClose, onEdit }) {
         <div className="drawer__stack">
           <div className="detail-card">
             <div className="detail-card__row">
-              <StatusPill tone="success">Published</StatusPill>
+              <StatusPill tone="success">Available</StatusPill>
               <button type="button" className="primary-button" onClick={() => onEdit(course)}>
                 Edit course
               </button>

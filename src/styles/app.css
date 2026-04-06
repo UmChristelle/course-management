@@ -1,23 +1,26 @@
 :root {
   color-scheme: light;
-  font-family: "Segoe UI Variable", "Segoe UI", "Trebuchet MS", sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  --border: rgba(15, 23, 42, 0.08);
-  --text: #112031;
-  --text-soft: #516072;
-  --text-faint: #7f8c9b;
-  --navy: #12324a;
+  --border: #d9e1ea;
+  --text: #162334;
+  --text-soft: #5c6a7a;
+  --text-faint: #7b8795;
+  --navy: #173a5e;
+  --navy-soft: #eef4fb;
   --danger: #ad3b2e;
-  --danger-soft: #f7d7d1;
-  --success: #dff4eb;
-  --info: #dceffb;
-  --shadow-lg: 0 24px 60px rgba(17, 32, 49, 0.14);
-  --shadow-md: 0 18px 40px rgba(17, 32, 49, 0.08);
+  --danger-soft: #fbe2dc;
+  --success: #e6f5ec;
+  --info: #e8f1fb;
+  --surface: #ffffff;
+  --surface-alt: #f6f8fb;
+  --shadow-lg: 0 22px 56px rgba(15, 23, 42, 0.1);
+  --shadow-md: 0 12px 28px rgba(15, 23, 42, 0.08);
   background:
-    radial-gradient(circle at top left, rgba(29, 122, 116, 0.18), transparent 28%),
-    radial-gradient(circle at top right, rgba(195, 138, 65, 0.14), transparent 24%),
-    linear-gradient(180deg, #f7f3ec 0%, #f2ede3 100%);
+    radial-gradient(circle at top left, rgba(23, 58, 94, 0.08), transparent 26%),
+    radial-gradient(circle at top right, rgba(42, 107, 178, 0.08), transparent 22%),
+    linear-gradient(180deg, #f7f9fc 0%, #eef2f7 100%);
   color: var(--text);
 }
 
@@ -128,8 +131,7 @@ button {
 .hero-panel h1,
 .login-hero h1 {
   margin: 0;
-  font-family: Georgia, "Times New Roman", serif;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
 }
 
 .section-heading__eyebrow,
@@ -179,7 +181,7 @@ button {
   height: 72px;
   border-radius: 50%;
   background:
-    conic-gradient(from 90deg, rgba(18, 50, 74, 0.18), var(--navy), rgba(29, 122, 116, 0.2));
+    conic-gradient(from 90deg, rgba(23, 58, 94, 0.16), var(--navy), rgba(42, 107, 178, 0.18));
   animation: spin 1.1s linear infinite;
 }
 
@@ -196,7 +198,7 @@ button {
   justify-content: center;
   gap: 1.5rem;
   background:
-    linear-gradient(140deg, rgba(18, 50, 74, 0.96), rgba(29, 122, 116, 0.88)),
+    linear-gradient(140deg, rgba(23, 58, 94, 0.98), rgba(26, 77, 125, 0.94)),
     linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0));
   color: #fff;
 }
@@ -208,7 +210,8 @@ button {
   width: fit-content;
   padding: 0.55rem 0.9rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.16);
 }
 
 .login-hero h1 {
@@ -230,9 +233,9 @@ button {
 
 .hero-grid article {
   padding: 1.2rem;
-  border-radius: 24px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
 }
 
 .hero-grid strong {
@@ -249,11 +252,10 @@ button {
 .login-card {
   width: min(100%, 460px);
   padding: 2rem;
-  border-radius: 30px;
-  background: rgba(255, 255, 255, 0.86);
-  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid var(--border);
   box-shadow: var(--shadow-lg);
-  backdrop-filter: blur(16px);
 }
 
 .login-card__hint {
@@ -278,9 +280,9 @@ button {
 .field textarea,
 .search-shell input {
   width: 100%;
-  border-radius: 18px;
+  border-radius: 14px;
   border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.88);
+  background: var(--surface);
   padding: 0.95rem 1rem;
   color: var(--text);
   outline: 0;
@@ -297,8 +299,8 @@ button {
 .field input:focus,
 .field textarea:focus,
 .search-shell input:focus {
-  border-color: rgba(18, 50, 74, 0.28);
-  box-shadow: 0 0 0 4px rgba(18, 50, 74, 0.08);
+  border-color: rgba(23, 58, 94, 0.28);
+  box-shadow: 0 0 0 4px rgba(23, 58, 94, 0.08);
 }
 
 .dashboard-layout {
@@ -312,7 +314,7 @@ button {
   top: 0;
   height: 100vh;
   padding: 1.75rem;
-  background: linear-gradient(180deg, rgba(18, 50, 74, 0.98), rgba(11, 27, 40, 0.96));
+  background: linear-gradient(180deg, rgba(23, 58, 94, 0.98), rgba(14, 36, 58, 0.98));
   color: #fff;
   display: flex;
   flex-direction: column;
@@ -329,10 +331,11 @@ button {
   height: 46px;
   display: grid;
   place-items: center;
-  border-radius: 16px;
-  background: linear-gradient(135deg, #f4c46f, #c38a41);
-  color: var(--navy);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
   font-weight: 800;
+  border: 1px solid rgba(255, 255, 255, 0.14);
 }
 
 .brand-mark p,
@@ -384,11 +387,10 @@ button {
 .modal,
 .confirm-dialog,
 .empty-panel {
-  border-radius: 28px;
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid var(--border);
   box-shadow: var(--shadow-md);
-  backdrop-filter: blur(14px);
 }
 
 .hero-panel {
@@ -427,7 +429,7 @@ button {
 .metric-card__value {
   display: block;
   font-size: clamp(2.3rem, 5vw, 3rem);
-  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 700;
 }
 
 .metric-card__description,
@@ -452,8 +454,8 @@ button {
 
 .insights-grid div {
   padding: 1.15rem;
-  border-radius: 22px;
-  background: rgba(255, 255, 255, 0.72);
+  border-radius: 18px;
+  background: var(--surface-alt);
   border: 1px solid var(--border);
 }
 
@@ -469,8 +471,8 @@ button {
   align-items: center;
   gap: 0.75rem;
   padding: 0.35rem 0.45rem 0.35rem 1rem;
-  border-radius: 22px;
-  background: rgba(255, 255, 255, 0.72);
+  border-radius: 18px;
+  background: var(--surface-alt);
   border: 1px solid var(--border);
 }
 
@@ -508,7 +510,7 @@ button {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text-faint);
-  background: rgba(241, 235, 224, 0.55);
+  background: var(--surface-alt);
 }
 
 .course-table tbody tr {
@@ -517,7 +519,7 @@ button {
 
 .course-table tbody tr.is-active,
 .course-table tbody tr:hover {
-  background: rgba(255, 255, 255, 0.58);
+  background: #f8fbff;
 }
 
 .course-identity {
@@ -544,7 +546,7 @@ button {
   display: grid;
   place-items: center;
   border-radius: 14px;
-  background: linear-gradient(135deg, rgba(18, 50, 74, 0.12), rgba(29, 122, 116, 0.18));
+  background: var(--navy-soft);
   color: var(--navy);
   font-weight: 800;
 }
@@ -573,7 +575,7 @@ button {
   height: 42px;
   display: grid;
   place-items: center;
-  background: rgba(255, 255, 255, 0.86);
+  background: var(--surface);
   border: 1px solid var(--border);
   color: var(--text);
 }
@@ -585,13 +587,13 @@ button {
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(17, 32, 49, 0.18);
+  background: rgba(15, 23, 42, 0.2);
   border: 0;
   z-index: 20;
 }
 
 .overlay--dark {
-  background: rgba(17, 32, 49, 0.35);
+  background: rgba(15, 23, 42, 0.38);
 }
 
 .drawer,
@@ -630,8 +632,8 @@ button {
 
 .detail-card {
   padding: 1.2rem;
-  border-radius: 22px;
-  background: rgba(255, 255, 255, 0.76);
+  border-radius: 18px;
+  background: var(--surface-alt);
   border: 1px solid var(--border);
 }
 

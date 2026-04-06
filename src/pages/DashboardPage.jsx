@@ -160,17 +160,17 @@ export default function DashboardPage() {
   }
 
   if (loading) {
-    return <LoadingScreen label="Preparing the university course workspace..." />;
+    return <LoadingScreen label="Loading course management data..." />;
   }
 
   return (
     <main className="dashboard-layout">
       <aside className="sidebar">
         <div className="brand-mark">
-          <span>UC</span>
+          <span>CM</span>
           <div>
-            <strong>University Catalog</strong>
-            <p>Supervisor console</p>
+            <strong>Course Management</strong>
+            <p>Supervisor panel</p>
           </div>
         </div>
 
@@ -191,11 +191,10 @@ export default function DashboardPage() {
       <section className="dashboard-main">
         <header className="hero-panel">
           <div>
-            <p className="section-heading__eyebrow">Course management interface</p>
+            <p className="section-heading__eyebrow">Supervisor workspace</p>
             <h1>Supervisor dashboard</h1>
             <p className="hero-panel__copy">
-              Review the live course catalog, inspect details, and maintain high-quality
-              curriculum records from one focused workspace.
+              View the course list, check details, and manage updates from one place.
             </p>
           </div>
 
@@ -217,19 +216,19 @@ export default function DashboardPage() {
 
         <section className="metrics-grid">
           <MetricCard
-            eyebrow="Catalog size"
+            eyebrow="Total courses"
             value={summary.total}
-            description="Total courses currently visible from the backend service."
+            description="Courses currently returned by the backend."
           />
           <MetricCard
-            eyebrow="Recent activity"
+            eyebrow="Updated recently"
             value={summary.recentlyUpdated}
-            description="Records updated recently, useful for monitoring active catalog work."
+            description="Courses updated in the last 72 hours."
           />
           <MetricCard
-            eyebrow="Supervisor ownership"
+            eyebrow="Linked supervisor"
             value={summary.ownedBySupervisor}
-            description="Courses already associated with a supervisor identifier."
+            description="Courses that already include a supervisor ID."
           />
         </section>
 
@@ -238,7 +237,7 @@ export default function DashboardPage() {
         <section className="workspace-card">
           <div className="section-heading">
             <div>
-              <p className="section-heading__eyebrow">Catalog records</p>
+              <p className="section-heading__eyebrow">Course records</p>
               <h2>All courses</h2>
             </div>
             <button type="button" className="primary-button" onClick={openCreateModal}>
@@ -253,7 +252,7 @@ export default function DashboardPage() {
               type="search"
               value={search}
               onChange={handleSearchChange}
-              placeholder="Search by course name, description, or ID"
+              placeholder="Search by name, description, or course ID"
             />
           </div>
 

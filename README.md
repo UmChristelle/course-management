@@ -1,6 +1,6 @@
 # University Course Management Interface
 
-A fresh supervisor-facing frontend built from scratch for the assignment brief. The app authenticates against the provided backend and supports the full course CRUD workflow from a professional dashboard.
+A supervisor-facing frontend for managing university courses with the provided backend API. The app keeps the assignment requirements front and center: authentication first, then full CRUD access for course records.
 
 ## Features
 
@@ -9,6 +9,7 @@ A fresh supervisor-facing frontend built from scratch for the assignment brief. 
 - Create, list, search, inspect, update, and delete courses
 - Success and error toast feedback with loading states
 - Responsive dashboard layout for desktop and mobile
+- Clean, professional UI with simplified branding and browser assets
 
 ## Stack
 

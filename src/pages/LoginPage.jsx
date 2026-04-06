@@ -41,21 +41,22 @@ export default function LoginPage() {
       <section className="login-hero">
         <div className="login-hero__badge">
           <ShieldCheck size={16} />
-          <span>University Supervisor Workspace</span>
+          <span>University Course Management</span>
         </div>
-        <h1>Manage courses with a clean, professional dashboard.</h1>
+        <h1>Manage courses from one clear supervisor dashboard.</h1>
         <p>
-          Sign in as a supervisor to manage course records.
+          Sign in with the supervisor account to review, update, and maintain the course
+          catalog.
         </p>
 
         <div className="hero-grid">
           <article>
-            <strong>Authenticated access</strong>
-            <p>Supervisor-only actions are protected before any catalog changes happen.</p>
+            <strong>Protected access</strong>
+            <p>Only authenticated supervisors can open the course management workspace.</p>
           </article>
           <article>
-            <strong>Live CRUD workflow</strong>
-            <p>Every create, detail, update, and delete action is connected to the API.</p>
+            <strong>Complete course workflow</strong>
+            <p>Create, view, edit, and delete courses through the provided backend API.</p>
           </article>
         </div>
       </section>
@@ -64,7 +65,7 @@ export default function LoginPage() {
         <form className="login-card" onSubmit={handleSubmit}>
           <div className="section-heading">
             <div>
-              <p className="section-heading__eyebrow">Secure access</p>
+              <p className="section-heading__eyebrow">Supervisor access</p>
               <h2>Supervisor login</h2>
             </div>
           </div>
@@ -99,12 +100,12 @@ export default function LoginPage() {
             disabled={authLoading}
           >
             <LockKeyhole size={16} />
-            <span>{authLoading ? 'Signing in...' : 'Enter dashboard'}</span>
+            <span>{authLoading ? 'Signing in...' : 'Sign in'}</span>
             <ArrowRight size={16} />
           </button>
 
           <div className="login-card__hint">
-            Demo credentials are prefilled for this assignment.
+            The assignment test credentials are already filled in.
           </div>
         </form>
       </section>

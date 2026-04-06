@@ -39,7 +39,7 @@ export default function CourseFormModal({
         <div className="section-heading">
           <div>
             <p className="section-heading__eyebrow">
-              {mode === 'create' ? 'New record' : 'Update record'}
+              {mode === 'create' ? 'New course' : 'Update course'}
             </p>
             <h2>{mode === 'create' ? 'Create a course' : 'Edit course'}</h2>
           </div>
@@ -65,7 +65,7 @@ export default function CourseFormModal({
               rows="6"
               value={values.description}
               onChange={handleChange}
-              placeholder="Write a professional summary of what this course covers."
+              placeholder="Write a short summary of the course content."
               required
             />
           </label>

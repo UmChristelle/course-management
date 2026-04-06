@@ -17,11 +17,10 @@ export default function ConfirmDialog({
         aria-label="Close delete confirmation"
       />
       <section className="confirm-dialog" aria-label="Delete course confirmation">
-        <p className="section-heading__eyebrow">Danger zone</p>
+        <p className="section-heading__eyebrow">Delete course</p>
         <h2>Delete {course.courseName}?</h2>
         <p>
-          This action removes the course from the catalog. Make sure the record is no
-          longer needed before continuing.
+          This will remove the course from the catalog. Please confirm before continuing.
         </p>
         <div className="modal__actions">
           <button type="button" className="ghost-button" onClick={onCancel}>

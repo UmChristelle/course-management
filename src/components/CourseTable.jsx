@@ -11,8 +11,8 @@ export default function CourseTable({
   if (!courses.length) {
     return (
       <section className="empty-panel">
-        <h3>No courses match your current filters</h3>
-        <p>Try a different search term or create a fresh course from the dashboard.</p>
+        <h3>No courses match this search</h3>
+        <p>Try another search term or add a new course from the dashboard.</p>
       </section>
     );
   }
